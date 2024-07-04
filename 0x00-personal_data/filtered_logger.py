@@ -6,18 +6,23 @@ import logging
 import mysql.connector
 from typing import List
 
+
 regex_patterns = {
-    'pattern_builder': lambda fields, sep: r'(?P<field>{})=[^{}]*'.format('|'.join(fields), sep),
+    'pattern_builder': lambda fields, sep: r'(?P<field>{})=[^{}]*'
+    .format('|'.join(fields), sep),
     'replacement': lambda repl: r'\g<field>={}'.format(repl),
 }
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
+
 
 def filter_datum(
         fields: List[str], redaction: str, message: str, separator: str,
         ) -> str:
     """Anonymizes specific fields in a log line."""
-    pattern, substitute = (regex_patterns["pattern_builder"], regex_patterns["replacement"])
+    pattern, substitute = (regex_patterns["pattern_builder"],
+                           regex_patterns["replacement"])
     return re.sub(pattern(fields, separator), substitute(redaction), message)
+
 
 def get_logger() -> logging.Logger:
     """Sets up a logger for sensitive user information."""
@@ -28,6 +33,7 @@ def get_logger() -> logging.Logger:
     user_logger.propagate = False
     user_logger.addHandler(handler)
     return user_logger
+
 
 def get_db() -> mysql.connector.connection.MySQLConnection:
     """Establishes a connection to the database."""
@@ -43,6 +49,7 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         database=db_name,
     )
     return connection
+
 
 def main():
     """Logs user data from the database."""
@@ -60,9 +67,11 @@ def main():
                 zip(column_list, record),
             )
             log_message = '{};'.format('; '.join(list(log_entry)))
-            log_args = ("user_activity", logging.INFO, None, None, log_message, None, None)
+            log_args = ("user_activity", logging.INFO,
+                        None, None, log_message, None, None)
             log_record = logging.LogRecord(*log_args)
             logger.handle(log_record)
+
 
 class RedactingFormatter(logging.Formatter):
     """Formatter class that obfuscates sensitive information."""
@@ -80,8 +89,10 @@ class RedactingFormatter(logging.Formatter):
         """Formats a log record by obfuscating sensitive information.
         """
         log_message = super(RedactingFormatter, self).format(record)
-        obfuscated_message = filter_datum(self.fields, self.MASK, log_message, self.DELIMITER)
+        obfuscated_message = filter_datum(self.fields, self.MASK,
+                                          log_message, self.DELIMITER)
         return obfuscated_message
+
 
 if __name__ == "__main__":
     main()
