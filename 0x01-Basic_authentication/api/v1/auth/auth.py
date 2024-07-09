@@ -5,16 +5,14 @@ from flask import Flask, request
 
 
 class Auth:
-    ''' A Class to manage the API authentication.
-    '''
+    ''' dsc kljnkjsdn ckjnkjnsdkjn ckjnlksdn kljsd'''
 
     def require_auth(
             self,
             path: str,
             excluded_paths: List[str]
             ) -> bool:
-        ''' Required auth
-        '''
+        ''' sdjkcn kjkj sdlkcnj lnlk nsd'''
         if path is None or excluded_paths is None or not excluded_paths:
             return True
 
@@ -22,24 +20,24 @@ class Auth:
         if path[-1] == '/':
             path = path[:-1]
 
-        contains_slash = False
+        ch = False
         for excluded_path in excluded_paths:
             if excluded_path[-1] == '/':
                 excluded_path = excluded_path[:-1]
-                contains_slash = True
+                ch = True
 
             if excluded_path.endswith('*'):
-                idx_after_last_slash = excluded_path.rfind('/') + 1
-                excluded = excluded_path[idx_after_last_slash:-1]
+                ih = excluded_path.rfind('/') + 1
+                excluded = excluded_path[ih:-1]
 
-                idx_after_last_slash = path.rfind('/') + 1
-                tmp_path = path[idx_after_last_slash:]
+                ih = path.rfind('/') + 1
+                th = path[ih:]
 
-                if excluded in tmp_path:
+                if excluded in th:
                     return False
 
-            if contains_slash:
-                contains_slash = False
+            if ch:
+                ch = False
 
         path += '/'
 
@@ -52,8 +50,7 @@ class Auth:
             self,
             request=None
             ) -> str:
-        '''Auth header
-        '''
+        '''Ahjb kdsb jhbkjhbsdcb jhjhbjhb jhjdsc hjsdhk'''
         if request is None:
             return None
 
@@ -63,7 +60,6 @@ class Auth:
             self,
             request=None
             ) -> TypeVar('User'):
-        ''' Current User
-        '''
+        ''' kjln askjdn kljjnlnk anlksjn lknlkjasc ds'''
         request = Flask(__name__)
         return None
