@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""
-Route module for the API
-"""
+"""dcdd sd  m, ,sdm , msd"""
 from os import getenv
 from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
@@ -46,15 +44,13 @@ def filter_request():
 
 @app.errorhandler(404)
 def not_found(error) -> str:
-    """ Not found handler
-    """
+    """ sdc sdkckl k sdck l sdc"""
     return jsonify({"error": "Not found"}), 404
 
 
 @app.errorhandler(401)
 def unauthorized_request(error) -> str:
-    '''Unauthorized requests
-    '''
+    '''sdc sd k ksdd sdcsdds'''
 
     return jsonify({
         "error": "Unauthorized"
@@ -63,8 +59,7 @@ def unauthorized_request(error) -> str:
 
 @app.errorhandler(403)
 def forbidden_request(error) -> str:
-    '''Forbidden request
-    '''
+    '''sdc m,s d,cm ,m ,m sdcm ,m ,sdcd'''
 
     return jsonify({
         "error": "Forbidden"
