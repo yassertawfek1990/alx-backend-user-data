@@ -5,39 +5,39 @@ from flask import Flask, request
 
 
 class Auth:
-    ''' dsc kljnkjsdn ckjnkjnsdkjn ckjnlksdn kljsd'''
+    ''' sdv kjlnlk dfldlv lkn skdv'''
 
     def require_auth(
             self,
             path: str,
             excluded_paths: List[str]
             ) -> bool:
-        ''' sdjkcn kjkj sdlkcnj lnlk nsd'''
+        ''' dsv  sdklk fdfv fdf'''
         if path is None or excluded_paths is None or not excluded_paths:
             return True
 
-        # handle * at end of excluded paths
+        # dfvvsd dff
         if path[-1] == '/':
             path = path[:-1]
 
-        ch = False
+        contains_slash = False
         for excluded_path in excluded_paths:
             if excluded_path[-1] == '/':
                 excluded_path = excluded_path[:-1]
-                ch = True
+                contains_slash = True
 
             if excluded_path.endswith('*'):
-                ih = excluded_path.rfind('/') + 1
-                excluded = excluded_path[ih:-1]
+                idx_after_last_slash = excluded_path.rfind('/') + 1
+                excluded = excluded_path[idx_after_last_slash:-1]
 
-                ih = path.rfind('/') + 1
-                th = path[ih:]
+                idx_after_last_slash = path.rfind('/') + 1
+                tmp_path = path[idx_after_last_slash:]
 
-                if excluded in th:
+                if excluded in tmp_path:
                     return False
 
-            if ch:
-                ch = False
+            if contains_slash:
+                contains_slash = False
 
         path += '/'
 
@@ -50,7 +50,7 @@ class Auth:
             self,
             request=None
             ) -> str:
-        '''Ahjb kdsb jhbkjhbsdcb jhjhbjhb jhjdsc hjsdhk'''
+        '''Afwevwev rrwefefvwve ewrvewf'''
         if request is None:
             return None
 
@@ -60,6 +60,6 @@ class Auth:
             self,
             request=None
             ) -> TypeVar('User'):
-        ''' kjln askjdn kljjnlnk anlksjn lknlkjasc ds'''
+        '''ewfwev erfewfef ewfe'''
         request = Flask(__name__)
         return None
