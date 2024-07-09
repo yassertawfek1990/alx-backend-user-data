@@ -24,7 +24,7 @@ class BasicAuth(Auth):
             self,
             base64_authorization_header: str
             ) -> str:
-        """rd kjdskv jb sdjkhbv hkhsdkjbkj dskjb jhbks dckh kjbsdb cjkkjdsh sdc"""
+        """rd kjdskv jb sdjkhbv hkhsdkjbkj dskjb jhbks dckh kjb sdc"""
         if not (base64_authorization_header and
                 isinstance(base64_authorization_header, str)):
             return None
@@ -48,7 +48,7 @@ class BasicAuth(Auth):
 
     def user_object_from_credentials(
             self, user_email: str, user_pwd: str) -> TypeVar('User'):
-        """rekusd uo usdu ciuninu sldi niniouds inion i nids oiun oin psd sddd"""
+        """rekusd uo usdu ciuninu sldi niniouds inion i nids oiun oin psd sd"""
         if not (user_email and isinstance(user_email, str) and
                 user_pwd and isinstance(user_pwd, str)):
             return None
